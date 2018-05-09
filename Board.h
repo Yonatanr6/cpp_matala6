@@ -22,14 +22,11 @@ using namespace std;
 class IllegalCoordinateException : public exception{
     int a,b;
     public: 
-        void setA(int row){
-            this->a=row;
-            }
-        void setB(int col){
-            this->b=col;
-            }
-        string theCoordinate ()const
-        {
+        IllegalCoordinateException(int num, int num2){
+            a=num;
+            b=num2;
+        }
+        string theCoordinate ()const{
             return to_string(a)+","+to_string(b);
         }
 };
@@ -37,10 +34,10 @@ class IllegalCoordinateException : public exception{
 class IllegalCharException : public exception{
     char ch;
 public:
-     IllegalCharException(char input){
-        ch = input;
+     IllegalCharException(char c){
+        ch = c;
     }
-    const char theChar() const throw () {
+    const char theChar() const throw (){
         return ch;
    }
 };
@@ -49,8 +46,7 @@ public:
 class Node{
     char cell;
 public:
-    Node(){
-        
+    Node(){     
     };
     
     Node(const char &ch){
@@ -66,18 +62,21 @@ Node(const Node& n){
     this->cell = n.get_node();
 };
 
-
 char get_node() const {
     return this->cell;
 }
+
 Node& operator=(char val);
 char operator=(Node node);
 friend ostream& operator<<(ostream& out, Node& node);
 operator char();
+bool operator==(char c) const;
+bool operator==(const Node& node) const;
+bool operator!=(char c) const;
+bool operator!=(const Node& node) const;
 
 
 };
-
 
 
 inline ostream& operator<<(ostream& out, Node& node){
@@ -91,15 +90,12 @@ class Board{
 public:    
     int size;
    Node **board;
-   
-
     
     friend ostream& operator<<(ostream& out, Board board);
     Board& operator=(char c);
-     Node& operator[](const list<int> list);
-     
-    Board(){
-        
+    Node& operator[](const list<int> list);
+    bool operator==(const Board& other) const;
+    Board(){     
     };
     
     Board(int num){
@@ -114,6 +110,12 @@ public:
 		}
 	}
     };
+    
+//    ~Board(){
+//        for(int i = 0; i < size; i++)
+//            delete[] board[i];
+//        delete[] board;
+//    }
     
 };
 

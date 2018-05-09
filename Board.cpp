@@ -13,7 +13,6 @@ using namespace std;
 ostream& operator<<(ostream& out, Board board){
     out<<"";
  for(int i=0;i<board.size;i++){
-     // out << "|" ;
         for(int j=0;j<board.size;j++){
            out << board.board[i][j].get_node(); 
         }
@@ -27,10 +26,8 @@ ostream& operator<<(ostream& out, Board board){
 
 Node& Board::operator[](list<int> list){
     int a=list.front(),b=list.back();
-    if(a<0 || a>=size || b<0 || b>=size)
-    {
-        IllegalCoordinateException ex;
-        ex.setA(a); ex.setB(b);
+    if(a<0 || a>=size || b<0 || b>=size){
+        IllegalCoordinateException ex(a,b);
         throw ex;
     }   
     return board[a][b];
@@ -59,8 +56,7 @@ Node::operator char(){
     return cell;
 }
 
-Board& Board::operator=(char c)
-{
+Board& Board::operator=(char c){
     if (c=='.') {
         for (int j = 0; j < size; ++j) {
             for (int i = 0; i < size; ++i) {
@@ -68,10 +64,33 @@ Board& Board::operator=(char c)
             }
         }
     }
-    else
-    {
+    else{
        IllegalCharException ex(c);
         throw ex; 
     }
     return *this;
 }
+
+bool Node::operator==(char c) const{
+    return cell ==c;
+}
+bool Node::operator==(const Node& node) const{
+    return cell == node.cell;
+}
+bool Node::operator!=(char c) const{
+    return cell !=c;
+}
+bool Node::operator!=(const Node& node) const{
+    return cell !=node.cell;
+}
+ bool Board::operator==(const Board& board) const{
+     if (size != board.size)
+        return false;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (this->board[i][j] != board.board[i][j])
+                return false;
+        }
+    }
+    return true;
+ }
