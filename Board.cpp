@@ -110,7 +110,7 @@ bool Node::operator!=(const Node& node) const{
         return false;
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
-            if (this->board[i][j] != board.board[i][j])
+            if (this->board[i][j] != board.board[i][j].get_node())
                 return false;
         }
     }
