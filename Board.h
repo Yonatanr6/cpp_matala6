@@ -49,7 +49,7 @@ public:
     Node(){     
     };
     
-    Node(const char &ch){
+    Node(const char ch){
           if(ch=='X' || ch== 'O' || ch=='.')
         this->cell = ch;
     else{
@@ -67,9 +67,9 @@ char get_node() const {
 }
 
 Node& operator=(char val);
-char operator=(Node node);
-friend ostream& operator<<(ostream& out, Node& node);
-operator char();
+char operator=(const Node node);
+friend ostream& operator<<(ostream& out,const Node& node);
+operator char()const;
 bool operator==(char c) const;
 bool operator==(const Node& node) const;
 bool operator!=(char c) const;
@@ -79,7 +79,7 @@ bool operator!=(const Node& node) const;
 };
 
 
-inline ostream& operator<<(ostream& out, Node& node){
+inline ostream& operator<<(ostream& out,const Node& node){
     out<<"";
     out<<node.get_node();
      out << "" <<endl;
@@ -91,11 +91,25 @@ public:
     int size;
    Node **board;
     
-    friend ostream& operator<<(ostream& out, Board board);
+    friend ostream& operator<<(ostream& out,const Board& board);
     Board& operator=(char c);
     Node& operator[](const list<int> list);
+    Board& operator=(const Board& b);
     bool operator==(const Board& other) const;
     Board(){     
+    };
+    
+     Board(const Board& b){
+      size=b.size; 
+      board = new Node*[size];
+      for (int i = 0; i < size; i++) {
+	board[i] = new Node[size];
+	}
+    for(int i = 0; i < size; i++) {
+	for(int j = 0; j < size; j++) {
+	board[i][j]= b.board[i][j].get_node();
+		}
+	}
     };
     
     Board(int num){
@@ -115,7 +129,7 @@ public:
         for(int i = 0; i < size; i++)
             delete[] board[i];
         delete[] board;
-    }
+    };
     
 };
 

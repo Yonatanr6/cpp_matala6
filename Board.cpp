@@ -10,7 +10,7 @@
 #include <list>
 using namespace std;
 
-ostream& operator<<(ostream& out, Board board){
+ostream& operator<<(ostream& out,const Board& board){
     out<<"";
  for(int i=0;i<board.size;i++){
         for(int j=0;j<board.size;j++){
@@ -24,13 +24,13 @@ ostream& operator<<(ostream& out, Board board){
 	 out << "" <<endl;
 }
 
-Node& Board::operator[](list<int> list){
+Node& Board::operator[](const list<int> list){
     int a=list.front(),b=list.back();
     if(a<0 || a>=size || b<0 || b>=size){
         IllegalCoordinateException ex(a,b);
         throw ex;
-    }   
-    return board[a][b];
+    }
+    return this->board[a][b];
 }
 
 
@@ -48,11 +48,11 @@ Node& Node::operator=(char val)
     return *this;
 }
 
-char Node::operator=(Node node){
+char Node::operator=(const Node node){
     return node.cell;
 }
 
-Node::operator char(){
+Node::operator char()const{
     return cell;
 }
 
@@ -71,6 +71,27 @@ Board& Board::operator=(char c){
     return *this;
 }
 
+Board& Board::operator=(const Board &b){
+    if (this==&b)
+        return *this;
+    if (b.size!=size) {
+        for (int i = 0; i < size; i++)
+            delete[] board[i];
+        delete [] board;
+
+        size = b.size;
+        board = new Node*[b.size];
+        for (int i = 0; i < size; i++) 
+            board[i] = new Node [size];
+    }
+    for (int i=0; i < size; ++i){
+        for(int j=0 ;j < size ; j++){
+            board[i][j]= b.board[i][j].get_node();
+        }
+    }
+    return *this;
+}
+
 bool Node::operator==(char c) const{
     return cell ==c;
 }
@@ -83,6 +104,7 @@ bool Node::operator!=(char c) const{
 bool Node::operator!=(const Node& node) const{
     return cell !=node.cell;
 }
+
  bool Board::operator==(const Board& board) const{
      if (size != board.size)
         return false;
