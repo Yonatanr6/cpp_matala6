@@ -18,10 +18,11 @@ ostream& operator<<(ostream& out,const Board& board){
         }
         out << "" <<endl;
     }
-	for (int i = 1; i <= board.size; i++)	{
-	    out << i;
-	}
-	 out << "" <<endl;
+    return out;
+//	for (int i = 1; i <= board.size; i++)	{
+//	    out << i;
+//	}
+//	 out << "" <<endl;
 }
 
 Node& Board::operator[](const list<int> list){
@@ -144,3 +145,4 @@ Board& Board::operator=(const Board &b){
 //    }
 //    return true;
 // }
+

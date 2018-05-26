@@ -95,12 +95,6 @@ public:
 };
 
 
-inline ostream& operator<<(ostream& out,const Node& node){
-    out<<"";
-    out<<node.get_node();
-     out << "" <<endl;
-}
-
 
 class Board{
 public:    
@@ -149,6 +143,15 @@ public:
     };
     
 };
+
+inline ostream& operator<<(ostream& out,const Node& node){
+    out<<"";
+    out<<node.get_node();
+     out << "" <<endl;
+}
+
+
+
 
 
 
