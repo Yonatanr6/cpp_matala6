@@ -110,11 +110,11 @@ public:
     friend ostream& operator<<(ostream& out,const Board& board);
     Board& operator=(char c);
     Node& operator[](const list<int> list);
-    Node& operator[](const Coordinate& c) const;
+   // Node& operator[](const Coordinate& c) const;
     Board& operator=(const Board& b);
 //    bool operator==(const Board& b) const;
     
-    Board(){ };
+   // Board(){ };
     
      Board(const Board& b){
       size=b.size; 
@@ -124,7 +124,7 @@ public:
 	}
     for(int i = 0; i < size; i++) {
 	for(int j = 0; j < size; j++) {
-	board[i][j]= b.board[i][j].get_node();
+	board[i][j]= b.board[i][j];
 		}
 	}
     };
@@ -137,7 +137,7 @@ public:
 	}
     for(int i = 0; i < size; i++) {
 	for(int j = 0; j < size; j++) {
-	board[i][j]= '.';
+	board[i][j]= Node{'.'};
 		}
 	}
     };
