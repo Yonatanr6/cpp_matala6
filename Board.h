@@ -148,6 +148,7 @@ inline ostream& operator<<(ostream& out,const Node& node){
     out<<"";
     out<<node.get_node();
      out << "" <<endl;
+     return out;
 }
 
 
