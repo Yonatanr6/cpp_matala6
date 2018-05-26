@@ -33,6 +33,17 @@ Node& Board::operator[](const list<int> list){
     return this->board[a][b];
 }
 
+Node &Board::operator[](const Coordinate& c) const{
+    int a = c.getRow(), b = c.getCol();
+
+    if (a < size && b < size)
+        return board[a][b];
+    else
+    {
+        IllegalCoordinateException ex(a,b);
+        throw ex;
+    }
+}
 
 Node& Node::operator=(char val)
 {
@@ -54,6 +65,24 @@ char Node::operator=(const Node node){
 
 Node::operator char()const{
     return cell;
+}
+
+ int Coordinate::getRow()const {
+     return row;
+ }
+ int Coordinate::getCol()const {
+        return col;
+  }
+void Coordinate::setRow(int x){
+    row=x;
+}
+void Coordinate::setCol(int y) {
+    col=y;
+}
+
+void Coordinate::setCoordinate(Coordinate c) {
+    row = c.row;
+    col = c.col;
 }
 
 Board& Board::operator=(char c){

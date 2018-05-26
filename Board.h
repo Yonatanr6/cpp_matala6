@@ -46,8 +46,7 @@ public:
 class Node{
     char cell;
 public:
-    Node(){     
-    };
+    Node(){};
     
     Node(const char ch){
           if(ch=='X' || ch== 'O' || ch=='.')
@@ -57,6 +56,8 @@ public:
         throw ex;
     }
 };
+
+
 
 Node(const Node& n){
     this->cell = n.get_node();
@@ -79,6 +80,21 @@ bool operator!=(const Node& node) const;
 };
 
 
+class Coordinate
+{
+    int row,col;
+public:
+    
+    void setCoordinate(Coordinate c);
+    int getRow()const;
+    int getCol()const;
+    void setRow(int x);
+    void setCol(int y);
+    
+    Coordinate(int x,int y):row(x),col(y) {}
+};
+
+
 inline ostream& operator<<(ostream& out,const Node& node){
     out<<"";
     out<<node.get_node();
@@ -94,10 +110,10 @@ public:
     friend ostream& operator<<(ostream& out,const Board& board);
     Board& operator=(char c);
     Node& operator[](const list<int> list);
+    Node& operator[](const Coordinate& c) const;
     Board& operator=(const Board& b);
     bool operator==(const Board& other) const;
-    Board(){     
-    };
+    Board(){ };
     
      Board(const Board& b){
       size=b.size; 
