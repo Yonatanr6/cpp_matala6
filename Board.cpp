@@ -33,7 +33,7 @@ Node& Board::operator[](const list<int> list){
     return this->board[a][b];
 }
 
-Node &Board::operator[](const Coordinate& c) const{
+Node& Board::operator[](const Coordinate& c) const{
     int a = c.getRow(), b = c.getCol();
 
     if (a < size && b < size)
@@ -56,12 +56,12 @@ Node& Node::operator=(char val)
        IllegalCharException ex(val);
         throw ex;
     }
-    return *this;
+  //  return *this;
 }
 
-char Node::operator=(const Node node){
-    return node.cell;
-}
+//char Node::operator=(const Node node){
+//    return node.cell;
+//}
 
 Node::operator char()const{
     return cell;
@@ -121,27 +121,27 @@ Board& Board::operator=(const Board &b){
     return *this;
 }
 
-bool Node::operator==(char c) const{
-    return cell ==c;
-}
-bool Node::operator==(const Node& node) const{
-    return cell == node.cell;
-}
-bool Node::operator!=(char c) const{
-    return cell !=c;
-}
-bool Node::operator!=(const Node& node) const{
-    return cell !=node.cell;
-}
-
- bool Board::operator==(const Board& board) const{
-     if (size != board.size)
-        return false;
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            if (this->board[i][j] != board.board[i][j].get_node())
-                return false;
-        }
-    }
-    return true;
- }
+//bool Node::operator==(char c) const{
+//    return cell ==c;
+//}
+//bool Node::operator==(const Node& node) const{
+//    return cell == node.cell;
+//}
+//bool Node::operator!=(char c) const{
+//    return cell !=c;
+//}
+//bool Node::operator!=(const Node& node) const{
+//    return cell !=node.cell;
+//}
+//
+// bool Board::operator==(const Board& board) const{
+//     if (size != board.size)
+//        return false;
+//    for (int i = 0; i < size; ++i) {
+//        for (int j = 0; j < size; ++j) {
+//            if (this->board[i][j] != board.board[i][j].get_node())
+//                return false;
+//        }
+//    }
+//    return true;
+// }

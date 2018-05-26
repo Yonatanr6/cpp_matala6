@@ -68,13 +68,13 @@ char get_node() const {
 }
 
 Node& operator=(char val);
-char operator=(const Node node);
+//char operator=(const Node node);
 friend ostream& operator<<(ostream& out,const Node& node);
 operator char()const;
-bool operator==(char c) const;
-bool operator==(const Node& node) const;
-bool operator!=(char c) const;
-bool operator!=(const Node& node) const;
+//bool operator==(char c) const;
+//bool operator==(const Node& node) const;
+//bool operator!=(char c) const;
+//bool operator!=(const Node& node) const;
 
 
 };
@@ -112,7 +112,8 @@ public:
     Node& operator[](const list<int> list);
     Node& operator[](const Coordinate& c) const;
     Board& operator=(const Board& b);
-    bool operator==(const Board& other) const;
+//    bool operator==(const Board& b) const;
+    
     Board(){ };
     
      Board(const Board& b){
@@ -130,7 +131,7 @@ public:
     
     Board(int num){
       size=num; 
-      board = new Node*[num];
+      board = new Node*[size];
       for (int i = 0; i < size; i++) {
 	board[i] = new Node[size];
 	}
